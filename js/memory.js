@@ -31,6 +31,7 @@ export var game = function(){
 
     var opcions = JSON.parse(localStorage.options)
     var lastCard;
+    var numero_iteracions = 0;
     var mode_joc = opcions.mode_infinit;
     var pairs = opcions.pairs;
     var dificultat = opcions.difficulty;
@@ -88,7 +89,9 @@ export var game = function(){
                 }
                 else{
                     [card, lastCard].forEach(c=>c.goBack());
-                    points-=25;
+                    if(dificultat == 'easy') points -= 15;
+                    else if(dificultat == 'normal') points -= 25;
+                    else if(dificultat == 'hard') points -= 35;
                     if (points <= 0){
                         alert ("Has perdut");
                         window.location.replace("../");
