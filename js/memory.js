@@ -31,11 +31,11 @@ export var game = function(){
 
     var opcions = JSON.parse(localStorage.options)
     var lastCard;
-    var numero_iteracions = 0;
+    var num_iteracions = opcions.numero_iteracions;
     var mode_joc = opcions.mode_infinit;
     var pairs = opcions.pairs;
     var dificultat = opcions.difficulty;
-    var points = 100;
+    var points;
     var cards = []; // Llistat de cartes
 
     var mix = function(){
@@ -66,9 +66,9 @@ export var game = function(){
             }
             else return mix().map(item => { // New game
                 cards.push(Object.create(card, { front: {value:item}, callback: {value:call}}));
-                if(dificultat == 'easy') points = 150;
-                else if(dificultat == 'normal') points = 100;
-                else if(dificultat == 'hard') points = 75;
+                if(dificultat == 'easy') points = 60; // 6 vides
+                else if(dificultat == 'normal') points = 40; // 4 vides
+                else if(dificultat == 'hard') points = 20; // 2 vides
                 return cards[cards.length-1];
             });
         },
@@ -76,22 +76,25 @@ export var game = function(){
             if (!card.clickable) return;
             card.goFront(lastCard);
             if (lastCard){ // Segona carta
+                console.log(opcions.numero_iteracions);
                 if (card.check(lastCard)){
                     pairs--;
                     if (pairs <= 0){
                         alert("Has guanyat amb " + points + " punts!");
                         if(mode_joc == 'si'){
+                            opcions.numero_iteracions += 1;
+                            opcions.pairs += num_iteracions % 5;
                             window.location.reload();
                         }else{
-                            window.location.replace("../"); 
+                            opcions.numero_iteracions = 0;
+                            window.location.replace("../");
                         }
+                        localStorage.options = JSON.stringify(opcions);
                     }
                 }
                 else{
                     [card, lastCard].forEach(c=>c.goBack());
-                    if(dificultat == 'easy') points -= 15;
-                    else if(dificultat == 'normal') points -= 25;
-                    else if(dificultat == 'hard') points -= 35;
+                    points -= 10;
                     if (points <= 0){
                         alert ("Has perdut");
                         window.location.replace("../");

@@ -3,7 +3,8 @@ var options = function(){
         pairs:2,
         difficulty:'normal',
         difficulty_infinit:'normal',
-        mode_infinit:'no'
+        mode_infinit:'no',
+        numero_iteracions:0
     };
     
     var pairs = $('#pairs');
@@ -13,7 +14,7 @@ var options = function(){
     var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
     pairs.val(options.pairs);
     difficulty.val(options.difficulty);
-    difficulty_infinit.val(options.difficulty_infinit)
+    difficulty_infinit.val(options.difficulty_infinit);
     pairs.on('change',()=>options.pairs = pairs.val());
     difficulty.on('change',()=>options.difficulty = difficulty.val());
     difficulty_infinit.on('change',()=>options.difficulty_infinit = difficulty_infinit.val());

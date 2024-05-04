@@ -30,4 +30,8 @@ addEventListener('load', function() {
     function(){
         console.warn("No es pot sortir!");
     });
+
+    var opcions = JSON.parse(this.localStorage.options);
+    opcions.numero_iteracions = 0;
+    this.localStorage.options = JSON.stringify(opcions);
 });
