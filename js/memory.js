@@ -29,8 +29,11 @@ export var game = function(){
         }
     };
 
+    var opcions = JSON.parse(localStorage.options)
     var lastCard;
-    var pairs = 2;
+    var mode_joc = opcions.mode_infinit;
+    var pairs = opcions.pairs;
+    var dificultat = opcions.difficulty;
     var points = 100;
     var cards = []; // Llistat de cartes
 
@@ -62,6 +65,9 @@ export var game = function(){
             }
             else return mix().map(item => { // New game
                 cards.push(Object.create(card, { front: {value:item}, callback: {value:call}}));
+                if(dificultat == 'easy') points = 150;
+                else if(dificultat == 'normal') points = 100;
+                else if(dificultat == 'hard') points = 75;
                 return cards[cards.length-1];
             });
         },
@@ -73,7 +79,11 @@ export var game = function(){
                     pairs--;
                     if (pairs <= 0){
                         alert("Has guanyat amb " + points + " punts!");
-                        window.location.replace("../");
+                        if(mode_joc == 'si'){
+                            window.location.reload();
+                        }else{
+                            window.location.replace("../"); 
+                        }
                     }
                 }
                 else{

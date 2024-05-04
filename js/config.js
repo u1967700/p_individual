@@ -2,7 +2,7 @@ import { PlayScene } from "./scene.js";
 
 var config = {
     type: Phaser.AUTO,
-    width: 800,
+    width: 1200,
     height: 600,
     parent: '#game',
     scene: [PlayScene],
