@@ -11,18 +11,26 @@
 
 body{
 	background-color: black;
+  align-items: center;
 }
 
 h1{
 	text-align: center;
+  color: red;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+}
+
+label{
+  color: red;
 }
 
 /*<!-- HTML !-->
 <button class="button-49" role="button">Button 49</button>
 
 /* CSS */
-.button-49,
-.button-49:after {
+.center,
+.center:after {
   width: 150px;
   height: 76px;
   line-height: 78px;
@@ -40,7 +48,7 @@ h1{
   touch-action: manipulation;
 }
 
-.button-49:after {
+.center:after {
   --slice-0: inset(50% 50% 50% 50%);
   --slice-1: inset(80% -6px 0 0);
   --slice-2: inset(50% -6px 30% 0);
@@ -60,7 +68,7 @@ h1{
   clip-path: var(--slice-0);
 }
 
-.button-49:hover:after {
+.center:hover:after {
   animation: 1s glitch;
   animation-timing-function: steps(2, end);
 }
@@ -113,8 +121,8 @@ h1{
 }
 
 @media (min-width: 768px) {
-  .button-49,
-  .button-49:after {
+  .center,
+  .center:after {
     width: 200px;
     height: 86px;
     line-height: 88px;

@@ -83,7 +83,7 @@ export var game = function(){
                         alert("Has guanyat amb " + points + " punts!");
                         if(mode_joc == 'si'){
                             opcions.numero_iteracions += 1;
-                            opcions.pairs += num_iteracions % 5;
+                            opcions.pairs += Math.floor(num_iteracions / 5);
                             window.location.reload();
                         }else{
                             opcions.numero_iteracions = 0;
