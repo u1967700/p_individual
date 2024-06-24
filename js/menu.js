@@ -2,7 +2,7 @@ addEventListener('load', function() {
     document.getElementById('play').addEventListener('click', 
     function(){
         sessionStorage.removeItem("save");
-        window.location.assign("./html/game.html");
+        window.location.assign("./html/phasergame.html");
     });
 
     document.getElementById('saves').addEventListener('click', 
@@ -18,7 +18,7 @@ addEventListener('load', function() {
         })
         .then(partida=>sessionStorage.save = partida)
         .catch(err=>sessionStorage.save = localStorage.save)
-        .finally(()=>window.location.assign("./html/game.html"));
+        .finally(()=>window.location.assign("./html/phasergame.html"));
     });
 
     document.getElementById('options').addEventListener('click', 
