@@ -18,9 +18,11 @@ export var game = function(){
         }
     };
 
+    var opcions = JSON.parse(localStorage.options);
     var lastCard;
-    var pairs = 2;
-    var points = 100;
+    var pairs = opcions.pairs;
+    var dificultat = opcions.difficulty;
+    var points;
 
     return {
         init: function (call){
@@ -29,6 +31,13 @@ export var game = function(){
             items = items.slice(0, pairs); // Agafem els primers
             items = items.concat(items);
             items.sort(() => Math.random() - 0.5); // Aleatòria
+            if (dificultat == "easy"){
+                points = 5
+            }else if (dificultat == "normal"){
+                points = 4
+            }else{
+                points = 3
+            }
             return items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
         },
         click: function (card){
@@ -44,7 +53,7 @@ export var game = function(){
                 }
                 else{
                     [card, lastCard].forEach(c=>c.goBack());
-                    points-=25;
+                    points -= 1;
                     if (points <= 0){
                         alert ("Has perdut");
                         window.location.replace("../");
